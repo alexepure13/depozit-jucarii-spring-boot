@@ -1,0 +1,252 @@
+.footer-basic-index {
+  padding: 40px 0;
+  color: #4b4c4d;
+  background: linear-gradient( 109.6deg,  rgba(17,106,197,1) 11.2%, rgba(31,179,237,1) 91.1% );
+  background-color: #184e8e;
+}
+
+.footer-basic-category {
+  padding: 40px 0;
+  color: #4b4c4d;
+  background: rgb(45,116,213);
+  background: linear-gradient(90deg, rgba(45,116,213,1) 0%, rgba(121,137,212,1) 100%);
+}
+
+.footer-basic-toys {
+  padding: 40px 0;
+  color: #4b4c4d;
+  background: rgb(45,116,213);
+  background: linear-gradient(90deg, rgba(45,116,213,1) 0%, rgba(121,137,212,1) 100%);
+}
+
+.footer-basic-add {
+  padding: 40px 0;
+  color: #4b4c4d;
+  background: rgb(0,127,236);
+  background: linear-gradient(90deg, rgba(0,127,236,1) 0%, rgba(105,151,241,1) 100%);
+}
+
+.footer-basic-index ul {
+  padding: 0;
+  list-style: none;
+  text-align: center;
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.footer-basic-index li {
+  padding: 0 10px;
+}
+
+.footer-basic-index ul a {
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+.footer-basic-index ul a:hover {
+  opacity: 1;
+}
+
+.footer-basic-index .social {
+  text-align: center;
+  padding-bottom: 25px;
+}
+
+.footer-basic-index .social > a {
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  margin: 0 8px;
+  color: inherit;
+  opacity: 0.75;
+}
+
+.footer-basic-index .social > a:hover {
+  opacity: 0.9;
+}
+
+.footer-basic-index .copyright {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 13px;
+  color: #fff;
+  margin-bottom: 0;
+}
+
+
+
+
+
+.footer-basic-category ul {
+  padding: 0;
+  list-style: none;
+  text-align: center;
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.footer-basic-category li {
+  padding: 0 10px;
+}
+
+.footer-basic-category ul a {
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+.footer-basic-category ul a:hover {
+  opacity: 1;
+}
+
+.footer-basic-category .social {
+  text-align: center;
+  padding-bottom: 25px;
+}
+
+.footer-basic-category .social > a {
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  margin: 0 8px;
+  color: inherit;
+  opacity: 0.75;
+}
+
+.footer-basic-category .social > a:hover {
+  opacity: 0.9;
+}
+
+.footer-basic-category .copyright {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 13px;
+  color: #fff;
+  margin-bottom: 0;
+}
+
+
+
+
+.footer-basic-toys ul {
+  padding: 0;
+  list-style: none;
+  text-align: center;
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.footer-basic-toys li {
+  padding: 0 10px;
+}
+
+.footer-basic-toys ul a {
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+.footer-basic-toys ul a:hover {
+  opacity: 1;
+}
+
+.footer-basic-toys .social {
+  text-align: center;
+  padding-bottom: 25px;
+}
+
+.footer-basic-toys .social > a {
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  margin: 0 8px;
+  color: inherit;
+  opacity: 0.75;
+}
+
+.footer-basic-toys .social > a:hover {
+  opacity: 0.9;
+}
+
+.footer-basic-toys .copyright {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 13px;
+  color: #fff;
+  margin-bottom: 0;
+}
+
+
+.footer-basic-add ul {
+  padding: 0;
+  list-style: none;
+  text-align: center;
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.footer-basic-add li {
+  padding: 0 10px;
+}
+
+.footer-basic-add ul a {
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+.footer-basic-add ul a:hover {
+  opacity: 1;
+}
+
+.footer-basic-add .social {
+  text-align: center;
+  padding-bottom: 25px;
+}
+
+.footer-basic-add .social > a {
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  margin: 0 8px;
+  color: inherit;
+  opacity: 0.75;
+}
+
+.footer-basic-add .social > a:hover {
+  opacity: 0.9;
+}
+
+.footer-basic-add .copyright {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 13px;
+  color: #fff;
+  margin-bottom: 0;
+}
+

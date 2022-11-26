@@ -1,0 +1,23 @@
+{
+  "properties": [
+    {
+      "name": "sql.init.mode",
+      "type": "java.lang.String",
+      "description": "Description for sql.init.mode."
+    },
+    {
+      "name": "spring.datasource.DB_CLOSE_DELAY",
+      "type": "java.lang.String",
+      "description": "Description for spring.datasource.DB_CLOSE_DELAY."
+    },
+    {
+      "name": "spring.datasource.DB_CLOSE_ON_EXIT",
+      "type": "java.lang.String",
+      "description": "Description for spring.datasource.DB_CLOSE_ON_EXIT."
+    },
+    {
+      "name": "spring.jdbc",
+      "type": "java.lang.String",
+      "description": "Description for spring.jdbc."
+    }
+  ] }

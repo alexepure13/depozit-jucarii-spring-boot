@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Depozit Jucarii</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/custom.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/search-Input-responsive.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/table-with-add.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/Header-Blue.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/Footer-Basic.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/image-slider.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/fonts/ionicons.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/fonts/fontawesome-all.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/fonts/font-awesome.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/fonts/fontawesome5-overrides.min.css}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/css/theme.bootstrap_4.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+
+    <script defer th:src="@{/js/bootstrap.js}"></script>
+    <script defer th:src="@{/js/custom.js}"></script>
+</head>
+<body onload="loadAtStart()">
+
+<header class="header-blue-category" style="padding: 0px; margin-bottom: 40px;">
+    <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index" style="margin-left: 30px;">Depozitul de Jucării</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="index">Acasă</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">Meniu</a>
+                        <div class="dropdown-menu"><a class="dropdown-item" href="categories">Categorii ADMIN</a><a class="dropdown-item" href="toys">Jucării ADMIN</a><a class="dropdown-item" href="categories-view">Categorii</a><a class="dropdown-item" href="toys-view">Jucarii</a><a class="dropdown-item" href="contact">Contact</a></div>
+                    </li>
+                </ul>
+                <form class="d-flex me-auto navbar-form" th:action="@{/logout}" method="post">
+                    <input type="submit" class="btn btn-light action-button" value="Logout" />
+                </form>
+            </div>
+            <form class="d-flex me-auto navbar-form" target="_self">
+                <div class="d-flex align-items-center"><label class="form-label d-flex mb-0"></label></div>
+            </form><i class="fa fa-envelope-o" style="margin-right: 20px;"></i><span class="navbar-text"> <a class="login" href="#" style="margin-right: 30px; text-decoration: none;">+40&nbsp; 734 434 596</a></span>
+        </div>
+        </div>
+    </nav>
+    <div class="container hero" style="margin-top: 5px;">
+        <div class="row" style="text-align: left;">
+            <div class="col-12 col-lg-6 col-xl-5 offset-xl-1" style="margin-bottom: 20px;">
+                <h1 style="text-align: left;margin-top: 0px;">Categorii</h1>
+                <p>Colecția noastră cuprinde <b><span id="totalIntCategories"></span></b> tipuri de jucării</p>
+            </div>
+            <div class="col-md-5 col-lg-5 offset-lg-1 offset-xl-0 d-none d-lg-block phone-holder" style="padding-bottom: 12px;">
+                <div class="phone-mockup"></div>
+            </div>
+        </div>
+    </div>
+</header>
+<form class="m-auto search-form" style="width: 300px;">
+    <div class="input-group"><span class="input-group-text"><i class="fa fa-search"></i></span>
+        <input id="myInput" class="form-control" type="text" placeholder="Caută după tip" onkeyup="searchByTypeFunction()" /></div>
+</form>
+<div class="container-fluid text-center" style="width: 90%;margin: auto;">
+
+    <div class="card" style="margin-top: 35px">
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table table-hover table-borderless" id="ipi-table-category">
+                        <thead class="thead-dark">
+
+                        <tr>
+                            <th class="text-center">ID</th>
+                            <th class="text-center">Tip jucării</th>
+                            <th class="text-center">Cantitate</th>
+                        </tr>
+
+                        </thead>
+                        <tbody class="text-center">
+                        <tr th:each="tempcategories:${categories}">
+                            <td th:text="${tempcategories.id}"</td>
+                            <td th:text="${tempcategories.typeOfToy}"</td>
+                            <td th:text="${tempcategories.quantity}"</td>
+
+                        </tr>
+                        <tr>
+                            <td><b>Total: <span id="totalIntCat"></span></b></td>
+                            <td></td>
+                            <td><b>Total: <span id="totalCantCat"></span></b></td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                    <button style="text-align: left;margin-bottom: 20px; margin-left: 20px; float: left;" class="btn btn-success" id="exportExcel">Download CSV</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="accordian">
+    <ul>
+        <li><a class="image_title" href="#">KungFu Panda</a><a href="#"><img src="http://thecodeplayer.com/uploads/media/3yiC6Yq.jpg"></a></li>
+        <li><a class="image_title" href="#">Toy Story</a><a href="#"><img src="http://thecodeplayer.com/uploads/media/40Ly3VB.jpg"></a></li>
+        <li><a class="image_title" href="#">Wall-E</a><a href="#"><img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg"></a></li>
+        <li><a class="image_title" href="#">UP!</a><a href="#"><img src="http://thecodeplayer.com/uploads/media/2rT2vdx.jpg"></a></li>
+        <li><a class="image_title" href="#">Cars</a><a href="#"><img src="http://thecodeplayer.com/uploads/media/8k3N3EL.jpg"></a></li>
+    </ul>
+</div>
+
+<!--Show details form-->
+<div class="modal" tabindex="-1" role="dialog" id="showDetails">
+    <form method="post" action="/Table/Update">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Detalii</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group" style="margin: 20px;">
+                        <label for="txtTip" style="margin-bottom: 5px;">Tip jucărie</label>
+                        <input readonly type="text" class="form-control" id="txtTip" name="typeOfToy">
+                    </div>
+                    <div class="form-group" style="margin: 20px;">
+                        <label for="txtCantitate" style="margin-bottom: 5px;">Cantitate</label>
+                        <input readonly type="number" class="form-control" id="txtCantitate" name="quantity">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button  type="button" class="btn btn-secondary" name="Close">Salvare</button>
+                    <button onclick="$('#showDetails').modal('hide');" type="button" class="btn btn-secondary" name="Close" id="ariaClose">Închide</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!--Add form-->
+<div class="modal" tabindex="-1" role="dialog" id="showAdd">
+    <form method="post" th:action="@{/categories/addCategory}">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Adăugare</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group" style="margin: 20px;">
+                        <label for="txtTipAdd" style="margin-bottom: 5px;">Tip jucărie</label>
+                        <input type="text" class="form-control" id="txtTipAdd" name="typeOfToy">
+                    </div>
+
+                    <div class="form-group" style="margin: 20px;">
+                        <label for="txtCantitateAdd" style="margin-bottom: 5px;">Cantitate</label>
+                        <input type="number" class="form-control" id="txtCantitateAdd" name="quantity">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" name="Close">Adaugă</button>
+                    <button onclick="$('#showAdd').modal('hide');" type="button" class="btn btn-secondary" name="Close" id="ariaCloseAdd">Închide</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!--Edit form-->
+<div class="modal" tabindex="-1" role="dialog" id="showEdit">
+    <form method="post" th:action="@{/categories/editCategory}">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editare</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group" style="margin: 20px;">
+                        <label for="txtIdEdit" style="margin-bottom: 5px;">ID</label>
+                        <input readonly type="number" class="form-control" id="txtIdEdit" name="id">
+                    </div>
+
+                    <div class="form-group" style="margin: 20px;">
+                        <label for="txtTipEdit" style="margin-bottom: 5px;">Tip jucărie</label>
+                        <input type="text" class="form-control" id="txtTipEdit" name="typeOfToy">
+                    </div>
+
+                    <div class="form-group" style="margin: 20px;">
+                        <label for="txtCantitateEdit" style="margin-bottom: 5px;">Cantitate</label>
+                        <input type="number" class="form-control" id="txtCantitateEdit" name="quantity">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" name="save">Salvează</button>
+                    <button onclick="$('#showEdit').modal('hide');" type="button" class="btn btn-secondary" name="Close" id="ariaCloseEdit">Închide</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!--Show delete confirmation form-->
+<!--<div class="modal" tabindex="-1" role="dialog" id="confirmDelete">
+    <form method="post" th:href="@{/categories/deleteCategory/{id}(id=${txtIdDel})}">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Detalii</h5>
+                </div>
+                <div class="modal-body">
+                    <h2>Ești sigur că vrei să ștergi înregistrarea?</h2>
+                    <div class="form-group" style="margin: 20px;">
+                        <label for="txtIdDel" style="margin-bottom: 5px;">ID</label>
+                        <input readonly type="text" class="form-control" id="txtIdDel" name="id">
+                    </div>
+                    <div class="form-group" style="margin: 20px;">
+                        <label for="txtTipDel" style="margin-bottom: 5px;">Tip jucărie</label>
+                        <input readonly type="text" class="form-control" id="txtTipDel" name="tip">
+                    </div>
+                    <div class="form-group" style="margin: 20px;">
+                        <label for="txtCantitateDel" style="margin-bottom: 5px;">Cantitate</label>
+                        <input readonly type="number" class="form-control" id="txtCantitateDel" name="cantitate">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button  type="button" class="btn btn-warning" name="Close">Delete</button>
+                    <button onclick="$('#confirmDelete').modal('hide');" type="button" class="btn btn-secondary" name="Close" id="ariaCloseDel">Închide</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>-->
+
+
+
+<footer class="footer-basic-category" style="margin-top: 100px">
+    <div class="social" style="color: var(--bs-white);"><a href="https://github.com/alexepure13/ibm-depozit-jucarii"><i class="icon ion-social-github-outline"></i></a><a href="#"><i class="icon ion-ios-email-outline"></i></a></div>
+    <ul class="list-inline" style="color: var(--bs-white);">
+        <li class="list-inline-item"><a href="index">Acasă</a></li>
+        <li class="list-inline-item"><a href="categories">Categorii</a></li>
+        <li class="list-inline-item"><a href="toys">Jucării</a></li>
+        <li class="list-inline-item"><a href="contact">Contact</a></li>
+    </ul>
+    <p class="copyright">Proiect Practică IBM, Depozit de jucării © 2022<br /></p>
+</footer>
+<script>
+    function searchByTypeFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("ipi-table-category");
+        tr = table.getElementsByTagName("tr");
+        var totalIntrari = 0;
+        var totalCantitate = 0;
+        for (i = 0; i < tr.length-1; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                    totalIntrari++;
+                    totalCantitate+=parseFloat(table.rows[i].cells[2].innerHTML);
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+        document.getElementById("totalIntCat").innerHTML = totalIntrari;
+        document.getElementById("totalCantCat").innerHTML = totalCantitate;
+    }
+
+    function loadAtStart() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("ipi-table-category");
+        tr = table.getElementsByTagName("tr");
+        var totalIntrari = 0;
+        var totalCantitate = 0;
+        for (i = 0; i < tr.length-1; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                    totalIntrari++;
+                    totalCantitate+=parseFloat(table.rows[i].cells[2].innerHTML);
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+        document.getElementById("totalIntCategories").innerHTML = totalIntrari;
+        document.getElementById("totalIntCat").innerHTML = totalIntrari;
+        document.getElementById("totalCantCat").innerHTML = totalCantitate;
+
+    }
+</script>
+
+<script>
+    $(".btnView").click(function () {
+        debugger;
+        var currentTds = $(this).closest("tr").find("td");
+        var cell2 = $(currentTds).eq(1).text();
+        var cell3 = $(currentTds).eq(2).text();
+        $("#txtTip").val(cell2);
+        $("#txtCantitate").val(cell3);
+        $("#showDetails").modal('show');
+    });
+</script>
+
+<script>
+    $(".btnEdit").click(function () {
+        debugger;
+        var currentTds = $(this).closest("tr").find("td");
+        var cell1 = $(currentTds).eq(0).text();
+        var cell2 = $(currentTds).eq(1).text();
+        var cell3 = $(currentTds).eq(2).text();
+        $("#txtIdEdit").val(cell1);
+        $("#txtTipEdit").val(cell2);
+        $("#txtCantitateEdit").val(cell3);
+        $("#showEdit").modal('show');
+    });
+</script>
+
+<script>
+    $(".btnAdd").click(function () {
+        debugger;
+
+        $("#showAdd").modal('show');
+    });
+</script>
+
+<script>
+    $(".btnDel").click(function () {
+        debugger;
+        var currentTds = $(this).closest("tr").find("td");
+        var cell1 = $(currentTds).eq(0).text();
+        var cell2 = $(currentTds).eq(1).text();
+        var cell3 = $(currentTds).eq(2).text();
+        $("#txtIdDel").val(cell1);
+        $("#txtTipDel").val(cell2);
+        $("#txtCantitateDel").val(cell3);
+        $("#confirmDelete").modal('show');
+    });
+</script>
+
+<script>
+    function html_table_to_excel(type)
+    {
+        var data = document.getElementById('ipi-table-category');
+
+        var file = XLSX.utils.table_to_book(data, {sheet: "sheet1"});
+
+        XLSX.write(file, { bookType: type, bookSST: true, type: 'base64' });
+
+        XLSX.writeFile(file, 'categories.' + type);
+    }
+
+    const export_button = document.getElementById('exportExcel');
+
+    export_button.addEventListener('click', () =>  {
+        html_table_to_excel('xlsx');
+    });
+</script>
+
+</body>
+</html>

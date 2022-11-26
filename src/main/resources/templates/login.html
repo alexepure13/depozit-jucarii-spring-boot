@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/custom.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/search-Input-responsive.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/table-with-add.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/Header-Blue.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/Footer-Basic.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/color-contact-list.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/login2nd.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/fonts/ionicons.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/fonts/fontawesome-all.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/fonts/font-awesome.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/fonts/fontawesome5-overrides.min.css}">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/css/theme.bootstrap_4.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+
+    <script defer th:src="@{/js/bootstrap.min.js}"></script>
+    <script defer th:src="@{/js/custom.js}"></script>
+
+    <title>Login</title>
+</head>
+<body>
+
+
+<div class="body" style="padding: 150px 100px 0px 100px;">
+    <div class="border rounded shadow">
+        <form style="" th:action="@{/login}" th:object="${user}" method="post">
+            <div class="col-12 col-lg-6 col-xl-5 offset-xl-1" style="margin-bottom: 20px;">
+                <h1 style="text-align: left;color: white;font-weight: lighter;padding-bottom: 50px;padding-top: 80px;">Login</h1>
+            </div>
+            <div class="text-center form-group mb-3"><img class="img-fluid" style="width: 100px; margin-bottom: 30px;" th:src="@{/img/login_icon.png}"></div>
+            <div class="d-flex justify-content-center form-group mb-3"><input class="form-control" type="text" th:field="*{username}" style="width: 200px;" placeholder="User"></div>
+            <div class="d-flex justify-content-center form-group mb-3"><input class="form-control" type="password" th:field="*{password}" style="width: 200px;" placeholder="Password"></div>
+            <div class="d-flex justify-content-center form-group mb-3"><button type="submit" class="btn btn-dark" style="width: 200px;">Login</button></div>
+            <p style="text-align: center;color: white;padding-top: 15px;padding-bottom: 15px;">Proiect Practică IBM, Depozit de jucării © 2022<br /></p>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
